@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 
+// Components
+import SortIcon from '../assets/SortIcon';
+
 class SortingVisualizer extends Component {
 
   constructor(props) {
@@ -69,6 +72,10 @@ class SortingVisualizer extends Component {
         <button onClick={() => this.resetArray()}>Generate New Array</button>
         <button onClick={() => this.mergeSort()}>Merge Sort</button>
         <button onClick={() => this.testSortingAlgorithms()}>Test Algo</button>
+        <button className="btn-sort" onClick={() => this.mergeSort()}>
+          Sort
+          <SortIcon />
+        </button>
       </div>
     );
   }
