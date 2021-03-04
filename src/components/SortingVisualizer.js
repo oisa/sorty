@@ -36,13 +36,13 @@ class SortingVisualizer extends Component {
         setTimeout(() => {
           barOneStyle.backgroundColor = color;
           barTwoStyle.backgroundColor = color;
-        }, i * 5);
+        }, i * 10);
       } else {
         setTimeout(() => {
           const [barOneIdx, newHeight] = animations[i];
           const barOneStyle = arrayBars[barOneIdx].style;
           barOneStyle.height = `${ newHeight }px`;
-        }, i * 5);
+        }, i * 10);
       }
     }
   }
@@ -63,7 +63,7 @@ class SortingVisualizer extends Component {
     return (
       <div className="array-container">
         { this.state.array.map((val, idx) => (
-          <div className="array-bar" key={ idx } style={{height: `${ val }px`, width: "20px"}}>
+          <div className="array-bar" key={ idx } style={{height: `${ val }px`, width: "5px"}}>
           </div>
         )) }
         <button onClick={() => this.resetArray()}>Generate New Array</button>

@@ -4,19 +4,29 @@ import * as d3 from 'd3';
 
 import '../App.css';
 
-import BarChart from './BarChart';
+// Components
+import HeaderLogo from './HeaderLogo';
+import SortOptions from './SortOptions';
+import SortInfo from './SortInfo';
 import SortingVisualizer from './SortingVisualizer.js';
+import DosDarkMode from './DosDarkMode';
 
 function App() {
   return (
     <div className="app">
+
+      <div className="nav-container">
+        <HeaderLogo />
+        <SortOptions />
+      </div>
+
       <div className="main-container">
-        {/* <h1>Sorty</h1>
-        <h3>The Sorting Visualiser</h3>
-        <h2>Coming soon</h2>}
-        {/* <BarChart /> */}
+        <SortInfo />
         <SortingVisualizer />
       </div>
+
+      <DosDarkMode />
+
     </div>
   );
 }

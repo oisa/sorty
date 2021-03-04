@@ -1,33 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+:root {
+
+/* --- DOS Mode colours as default --- */
+
+  --primary: #FFFFFF;
+  --primary-rgb: 255,255,255;
+  --secondary: #3F40C7;
+  --secondary-rgb: 63, 64, 199;
+  --tertiary: #FFB800;
+  --tertiary-rgb: 255, 184, 0;
+
+/* Gradients */
+
+  --gradient-top: #4155BF;
+  --gradient-bottom: #3A00DE;
+
+/* Lines */
+
+  --line-thick: 4px;
+  --line-standard: 2px;
+  --line-thin: 1px;
+
+/* Font sizes */
+
+  --font-xl: 36px;
+  --font-l: 24px;
+  --font-m: 16px;
+  --font-std: 12px;
+  --font-s: 8px;
+
+}
+
+
+/* ------ Global Stylez ------ */
+
 body {
+  margin: 0;
   width: 100%;
   height: 100%;
-  color: white;
+  color: var(--primary);
+  font-family: 'Space Mono', monospace;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
 }
 
 .app {
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: #4da4ff;
-  background-image: linear-gradient(34deg, #4da4ff 0%, #d5b2ff 100%);
-}
-
-.main-container {
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  width: 100%;
-  word-wrap: break-word;
+  background-color: var(--gradient-bottom);
+  background-image: linear-gradient(34deg, var(--gradient-bottom) 0%, var(--gradient-top) 100%);
+  position: relative;
 }
 
 h1, h2, h3 {
   font-weight: 400;
 }
 
-.array-container {
+a {
+  color: var(--priamry);
+  text-decoration: none;
+}
+
+.header-logo {
+  font-size: var(--font-xl);
+  position: fixed;
+  top: 30px;
+  left: 40px;
+}
+
+
+/* ------ Navigation ------ */
+
+.nav-container {
+  padding-top: 20px;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.sort-options-nav {
+}
+
+.sort-list {
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  list-style: none;
+  top: 0px;
+  margin: 0;
+}
+
+.sort-list > li {
+  padding: 0 20px;
+  margin: 0;
+}
+
+.sort-list > li > a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 12px 8px 12px;
+  border-radius: 10px;
+  transition: all 0.25s;
+}
+
+.sort-list > li > a:hover {
+  background-color: var(--primary);
+  color: var(--secondary);
+}
+
+.sort-list > li > a:hover svg {
+  fill: var(--secondary);
+}
+
+.sort-list > li > a > svg {
+  margin-bottom: 10px;
+  transition: all 0.25s;
+}
+
+
+/* ------ Visualiser and Info ------- */
+
+.main-container {
+  width: 100%;
+  display: flex;
+  height: calc(100% - 140px);
+}
+
+.info-container {
   position: absolute;
+  bottom: 0;
+  padding: 40px;
+  /* width: 20%;
+  align-self: flex-end; */
+}
+
+.info {
+  list-style: none;
+  padding-inline-start: 0;
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+.info > li {
+  margin: 20px 0;
+}
+
+.info > li:last-child {
+  margin: 0;
+}
+
+.array-container {
   bottom: 0;
   display: flex;
   align-self: center;
@@ -36,10 +165,75 @@ h1, h2, h3 {
   width: 100%;
 }
 
+/* ------ Buttons ------ */
+
+.btn-icon {
+  fill: var(--primary);
+}
+
+
+/* ------ Data Visualisation Stylez ------ */
+
 .array-bar {
   width: 2px;
-  background-color: pink;
+  background-color: var(--primary);
   display: inline-block;
   margin: 0 1px;
-  transition: all 0.5s ease-in-out;
+  /* transition: all 0.5s ease-in-out; */
+}
+
+
+/* ------ Utility ------ */
+
+.dos-dark-mode {
+  position: absolute;
+  bottom: 10px;
+  right: 30px;
+}
+
+::-moz-selection {
+  color: var(--secondary);
+  background: rgba(var(--primary-rgb), 0.996);
+}
+
+::selection {
+  color: var(--secondary);
+  background: rgba(var(--primary-rgb), 0.996);
+}
+
+/* -------- DOS / Dark Mode ------- */
+
+.switch input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.switch {
+  margin: 10px;
+  display: inline-block;
+  font-size: 20px; /* 1 */
+  height: 1em;
+  width: 2em;
+  background: #BDB9A6;
+  border-radius: 1em;
+  cursor: pointer;
+}
+
+.switch div {
+  height: 1em;
+  width: 1em;
+  border-radius: 1em;
+  background: #FFF;
+  box-shadow: 0 0.1em 0.3em rgba(0,0,0,0.3);
+  -webkit-transition: all 300ms;
+     -moz-transition: all 300ms;
+          transition: all 300ms;
+  cursor: pointer;
+}
+
+.switch input:checked + div {
+  -webkit-transform: translate3d(100%, 0, 0);
+     -moz-transform: translate3d(100%, 0, 0);
+          transform: translate3d(100%, 0, 0);
 }
