@@ -94,6 +94,7 @@ a {
   list-style: none;
   top: 0px;
   margin: 0;
+  padding-inline-start: 0;
 }
 
 .sort-list > li {
@@ -156,13 +157,30 @@ a {
   margin: 0;
 }
 
-.array-container {
+.visualiser-container {
   bottom: 0;
   display: flex;
   align-self: center;
   justify-content: center;
   align-items: flex-end;
   width: 100%;
+}
+
+.visualiser {
+  bottom: 0;
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  align-items: flex-end;
+  width: 100%;
+}
+
+.visualiser-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 20px;
 }
 
 /* ------ Buttons ------ */
@@ -194,6 +212,8 @@ a {
   box-shadow: 3.5px 3.5px 0px var(--secondary),
               6px 6px 0px var(--primary);
   transition: all 0.25s;
+  position: absolute;
+  right: 150px;
 }
 
 .btn-sort:hover {
@@ -204,6 +224,21 @@ a {
 
 .btn-sort-icon {
   margin-top: 5px;
+}
+
+.visualiser-buttons > button {
+  margin: 20px;
+  font-size: var(--font-m);
+  padding: 10px 20px 15px 20px;
+  color: var(--primary);
+  background-color: rgba(var(--secondary-rgb), 0.7);
+  font-family: 'Space Mono', monospace;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  outline: none;
+  border: 2px solid var(--primary);
+  border-radius: 10px;
+  cursor: pointer;
 }
 
 

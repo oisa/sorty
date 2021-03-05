@@ -64,18 +64,28 @@ class SortingVisualizer extends Component {
 
   render() {
     return (
-      <div className="array-container">
-        { this.state.array.map((val, idx) => (
-          <div className="array-bar" key={ idx } style={{height: `${ val }px`, width: "5px"}}>
-          </div>
-        )) }
-        <button onClick={() => this.resetArray()}>Generate New Array</button>
-        <button onClick={() => this.mergeSort()}>Merge Sort</button>
-        <button onClick={() => this.testSortingAlgorithms()}>Test Algo</button>
+      <div className="visualiser-container">
+
+        <div className="visualiser">
+          { this.state.array.map((val, idx) => (
+            <div className="array-bar" key={ idx } style={{height: `${ val }px`, width: "5px"}}>
+            </div>
+          )) }
+        </div>
+
+        <div className="visualiser-buttons">
+
+          <button onClick={() => this.resetArray()}>Generate New Array</button>
+          <button onClick={() => this.mergeSort()}>Merge Sort</button>
+          <button onClick={() => this.testSortingAlgorithms()}>Test Algo</button>
+
+        </div>
+
         <button className="btn-sort" onClick={() => this.mergeSort()}>
           Sort
           <SortIcon />
         </button>
+
       </div>
     );
   }
