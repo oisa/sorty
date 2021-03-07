@@ -1,55 +1,9 @@
-import React, { Component, useRef, useState } from 'react';
-import { Canvas, useFrame } from "react-three-fiber";
-import { softShadows, MeshWobbleMaterial, Stars, OrbitControls } from "drei";
-import { useSpring, a } from "react-spring/three";
+import React, { Component } from 'react';
 
 // Components
 import SortIcon from '../assets/SortIcon';
 
-softShadows();
-
-const SpinningMesh = ({ position, color, speed, args }) => {
-  //ref to target the mesh
-  const mesh = useRef();
-
-  //useFrame allows us to re-render/update rotation on each frame
-  useFrame(() => (mesh.current.rotation.x = mesh.current.rotation.y += 0.01));
-
-  //Basic expand state
-  const [expand, setExpand] = useState(false);
-  // React spring expand animation
-  const props = useSpring({
-    scale: expand ? [1.4, 1.4, 1.4] : [1, 1, 1],
-  });
-  return (
-    <a.mesh
-      position={position}
-      ref={mesh}
-      onClick={() => setExpand(!expand)}
-      scale={props.scale}
-      castShadow>
-      <boxBufferGeometry attach='geometry' args={args} />
-      <MeshWobbleMaterial
-        color={color}
-        speed={speed}
-        attach='material'
-        factor={0.6}
-      />
-    </a.mesh>
-
-    //Using Drei box if you want
-    // <Box {...props} ref={mesh} castShadow>
-    //   <MeshWobbleMaterial
-    //     {...props}
-    //     attach='material'
-    //     factor={0.6}
-    //     Speed={1}
-    //   />
-    // </Box>
-  );
-};
-
-class SortingVisualizerThreeTest extends Component {
+class SortingVisualizer extends Component {
 
   constructor(props) {
     super(props);
@@ -66,7 +20,7 @@ class SortingVisualizerThreeTest extends Component {
   resetArray() {
     const array = [];
     for (let i = 0; i < 100; i++) {
-      array.push(randomIntFromInterval(5, 100));
+      array.push(randomIntFromInterval(5, 730));
     }
     this.setState({ array });
   }
@@ -96,70 +50,6 @@ class SortingVisualizerThreeTest extends Component {
     }
   }
 
-
-  bubbleSort() {
-
-    let array = this.state.array;
-
-    let swapped = true; // Assume the worst.
-
-    let end = array.length - 1;
-
-    while (swapped === true) {
-      swapped = false; // We haven't yet swapped anything in this iteration.
-      for (let i = 0; i < end; i++) {
-
-          if (array[i] > array[i+1]) {
-
-            [ array[i], array[i+1] ] = [ array[i+1], array[i] ]; // Destructuring for parallel assignment.
-            swapped = true;
-
-            this.setState({
-              array: array,
-            })
-          }
-
-      }
-      end--;
-    }
-
-    return array; // Everything is now sorted.
-  }
-
-
-  bubbleSort2() {
-    let inputArr = this.state.array;
-    let len = inputArr.length;
-    let swapped;
-    do {
-      swapped = false;
-
-      for (let i = 0; i < len; i++) {
-
-        console.log('outside the setTimeout');
-
-        setTimeout(() => {
-
-            if (inputArr[i] > inputArr[i + 1]) {
-
-                let tmp = inputArr[i];
-                inputArr[i] = inputArr[i + 1];
-                inputArr[i + 1] = tmp;
-                swapped = true;
-
-                this.setState({
-                  array: inputArr,
-                })
-            }
-            console.log('inside the setTimeout');
-
-          }, i * 100);
-
-      }
-    } while (swapped);
-    return inputArr;
-  }
-
   testSortingAlgorithms() {
     for (let i = 0; i < 100; i++) {
       const array = [];
@@ -176,12 +66,12 @@ class SortingVisualizerThreeTest extends Component {
     return (
       <div className="visualiser-container">
 
-        {/*<div className="visualiser">
+        <div className="visualiser">
           { this.state.array.map((val, idx) => (
             <div className="array-bar" key={ idx } style={{height: `${ val }px`, width: "5px"}}>
             </div>
           )) }
-        </div>*/}
+        </div>
 
         <div className="visualiser-buttons">
 
@@ -191,60 +81,10 @@ class SortingVisualizerThreeTest extends Component {
 
         </div>
 
-        <button className="btn-sort" onClick={() => this.bubbleSort2()}>
+        <button className="btn-sort" onClick={() => this.mergeSort()}>
           Sort
           <SortIcon />
         </button>
-
-        <Canvas
-          colorManagement
-          shadowMap
-          camera={{ position: [-130, 30, 130], fov: 60 }}>
-          {/* This light makes things look pretty */}
-          <ambientLight intensity={0.3} />
-          {/* Our main source of light, also casting our shadow */}
-          <directionalLight
-            castShadow
-            position={[0, 10, 0]}
-            intensity={1.5}
-            shadow-mapSize-width={1024}
-            shadow-mapSize-height={1024}
-            shadow-camera-far={50}
-            shadow-camera-left={-10}
-            shadow-camera-right={10}
-            shadow-camera-top={10}
-            shadow-camera-bottom={-10}
-          />
-          {/* A light to help illumnate the spinning boxes */}
-          <pointLight position={[-10, 0, -20]} intensity={0.5} />
-          <pointLight position={[0, -10, 0]} intensity={1.5} />
-          <group>
-            {/* This mesh is the plane (The floor) */}
-            <mesh
-              rotation={[-Math.PI / 2, 0, 0]}
-              position={[0, -3, 0]}
-              receiveShadow>
-              <planeBufferGeometry attach='geometry' args={[100, 100]} />
-              <shadowMaterial attach='material' opacity={0.3} />
-            </mesh>
-            {/*<SpinningMesh
-              position={[0, 1, 0]}
-              color='red'
-              args={[3, 2, 1]}
-              speed={2}
-            />
-            <SpinningMesh position={[-2, 1, -5]} color='pink' speed={2} />
-            <SpinningMesh position={[5, 1, -2]} color='pink' speed={2} />*/}
-
-            { this.state.array.map((val, idx) => (
-              <SpinningMesh position={[ idx-100, val-35, idx]} args={[1, 1, 1]} key={ idx } color='red' speed={`0.${val}`} keyIdx={ idx } />
-            )) }
-
-          </group>
-          {/* Allows us to move the canvas around for different prespectives */}
-          <OrbitControls />
-          {/*<Stars />*/}
-        </Canvas>
 
       </div>
     );
@@ -331,4 +171,4 @@ function doMerge(mainArray, startIdx, middleIdx, endIdx, auxiliaryArray, animati
   }
 }
 
-export default SortingVisualizerThreeTest;
+export default SortingVisualizer;

@@ -4,7 +4,7 @@ class SortInfo extends Component {
   render() {
     return (
       <div className="info-container">
-        <h2>Info</h2>
+        <h2>Bubble Sort</h2>
         <ul className="info">
           <li>Type: Comparison Sort</li>
 

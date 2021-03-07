@@ -1,13 +1,12 @@
 import React, { component } from 'react'
 
-import * as d3 from 'd3';
-
 import '../App.css';
 
 // Components
 import HeaderLogo from './HeaderLogo';
 import SortOptions from './SortOptions';
 import SortInfo from './SortInfo';
+import SortingVisualizer2D from './SortingVisualizer2D.js';
 import SortingVisualizer from './SortingVisualizer.js';
 import DosDarkMode from './DosDarkMode';
 
@@ -22,6 +21,7 @@ function App() {
 
       <div className="main-container">
         <SortInfo />
+        {/* <SortingVisualizer2D /> */}
         <SortingVisualizer />
       </div>
 
