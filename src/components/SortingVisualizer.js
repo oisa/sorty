@@ -9,7 +9,7 @@ import SortIcon from '../assets/SortIcon';
 softShadows();
 
 const SpinningMesh = ({ position, color, speed, args }) => {
-  //ref to target the mesh
+
   const mesh = useRef();
 
   //useFrame allows us to re-render/update rotation on each frame
@@ -37,15 +37,6 @@ const SpinningMesh = ({ position, color, speed, args }) => {
       />
     </a.mesh>
 
-    //Using Drei box if you want
-    // <Box {...props} ref={mesh} castShadow>
-    //   <MeshWobbleMaterial
-    //     {...props}
-    //     attach='material'
-    //     factor={0.6}
-    //     Speed={1}
-    //   />
-    // </Box>
   );
 };
 
@@ -101,17 +92,17 @@ class SortingVisualizerThreeTest extends Component {
 
     let array = this.state.array;
 
-    let swapped = true; // Assume the worst.
+    let swapped = true;
 
     let end = array.length - 1;
 
     while (swapped === true) {
-      swapped = false; // We haven't yet swapped anything in this iteration.
+      swapped = false;
       for (let i = 0; i < end; i++) {
 
           if (array[i] > array[i+1]) {
 
-            [ array[i], array[i+1] ] = [ array[i+1], array[i] ]; // Destructuring for parallel assignment.
+            [ array[i], array[i+1] ] = [ array[i+1], array[i] ];
             swapped = true;
 
             this.setState({
@@ -123,7 +114,7 @@ class SortingVisualizerThreeTest extends Component {
       end--;
     }
 
-    return array; // Everything is now sorted.
+    return array;
   }
 
 
@@ -200,9 +191,7 @@ class SortingVisualizerThreeTest extends Component {
           colorManagement
           shadowMap
           camera={{ position: [-130, 30, 130], fov: 60 }}>
-          {/* This light makes things look pretty */}
           <ambientLight intensity={0.3} />
-          {/* Our main source of light, also casting our shadow */}
           <directionalLight
             castShadow
             position={[0, 10, 0]}
@@ -215,18 +204,16 @@ class SortingVisualizerThreeTest extends Component {
             shadow-camera-top={10}
             shadow-camera-bottom={-10}
           />
-          {/* A light to help illumnate the spinning boxes */}
           <pointLight position={[-10, 0, -20]} intensity={0.5} />
           <pointLight position={[0, -10, 0]} intensity={1.5} />
           <group>
-            {/* This mesh is the plane (The floor) */}
-            <mesh
+            {/*<mesh
               rotation={[-Math.PI / 2, 0, 0]}
               position={[0, -3, 0]}
               receiveShadow>
               <planeBufferGeometry attach='geometry' args={[100, 100]} />
               <shadowMaterial attach='material' opacity={0.3} />
-            </mesh>
+            </mesh>*/}
             {/*<SpinningMesh
               position={[0, 1, 0]}
               color='red'
@@ -241,7 +228,6 @@ class SortingVisualizerThreeTest extends Component {
             )) }
 
           </group>
-          {/* Allows us to move the canvas around for different prespectives */}
           <OrbitControls />
           {/*<Stars />*/}
         </Canvas>
