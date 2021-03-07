@@ -249,7 +249,7 @@ canvas {
 .visualizer-buttons > button {
   margin: 20px;
   font-size: var(--font-m);
-  padding: 10px 20px 15px 20px;
+  padding: 13px 20px 13px 20px;
   color: var(--primary);
   background-color: rgba(var(--secondary-rgb), 0.4);
   font-family: 'Space Mono', monospace;
@@ -267,6 +267,7 @@ canvas {
 .visualizer-buttons > button:hover {
   color: var(--secondary);
   background-color: var(--primary);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%233f40c7' fill-opacity='0.2' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
 }
 
 
@@ -283,15 +284,6 @@ canvas {
 
 /* ------ Utility ------ */
 
-.dos-dark-mode {
-  position: absolute;
-  bottom: 10px;
-  right: 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 ::-moz-selection {
   color: var(--secondary);
   background: rgba(var(--primary-rgb), 0.996);
@@ -303,6 +295,16 @@ canvas {
 }
 
 /* -------- DOS / Dark Mode ------- */
+
+.dos-dark-mode {
+  position: absolute;
+  bottom: 10px;
+  right: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90px;
+}
 
 .switch input {
   position: absolute;
@@ -320,6 +322,8 @@ canvas {
   border: 1px solid var(--primary);
   border-radius: 1em;
   cursor: pointer;
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
 }
 
 .switch div {

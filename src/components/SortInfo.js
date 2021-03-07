@@ -11,19 +11,19 @@ class SortInfo extends Component {
   render() {
     return (
       <div className="info-container">
-        <h2>{this.props.sortName}</h2>
+        <h2>{ this.props.sortName }</h2>
         <ul className="info">
-          <li>Type: Comparison Sort</li>
+          <li>Type: { this.props.type }</li>
 
-          <li>Stability: Stable</li>
+          <li>Stability: { this.props.stability }</li>
 
-          <li>Space: 0(1)</li>
+          <li>Space: { this.props.space }</li>
 
-          <li>Best Case: Ω(N)</li>
+          <li>Best Case: { this.props.bestCase }</li>
 
-          <li>Average Case: 0(N^2)</li>
+          <li>Average Case: { this.props.averageCase }</li>
 
-          <li>Worst Case: O(N^2)</li>
+          <li>Worst Case: { this.props.worstCase }</li>
 
           <li>RAM Usage: 1530000000</li>
 

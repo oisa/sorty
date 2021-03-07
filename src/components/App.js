@@ -43,42 +43,42 @@ class App extends Component {
             <ul className="sort-list">
               <li>
                 <a href="#" onClick={ () => this.setState({
-                  sortName: 'Bubble Sort', type: 'Comparison Sort', stability: 'Stable', space: '0(1)', bestCase: 'Ω(N)', averageCase: '0(N^2)', worstCase: 'O(N^2)' }) }>
+                  sortName: 'Bubble Sort', type: 'Comparison', stability: 'Stable', space: '0(1)', bestCase: 'Ω(N)', averageCase: '0(N^2)', worstCase: 'O(N^2)' }) }>
                   <BubbleIcon />
                   Bubble
                 </a>
               </li>
               <li>
                 <a href="#" onClick={ () => this.setState({
-                  sortName: 'Insertion Sort' }) }>
+                  sortName: 'Insertion Sort', type: 'Comparison', stability: 'Stable', space: '0(1)', bestCase: 'Ω(N)', averageCase: '0(N^2)', worstCase: 'O(N^2)' }) }>
                   <InsertionIcon />
                   Insertion
                 </a>
               </li>
               <li>
                 <a href="#" onClick={ () => this.setState({
-                  sortName: 'Bucket Sort' }) }>
+                  sortName: 'Bucket Sort', type: 'Distribution', stability: 'Stable', space: '0(N+K)', bestCase: 'Ω(N+K)', averageCase: '0(N+K)', worstCase: 'O(N^2)' }) }>
                   <BucketIcon />
                   Bucket
                 </a>
               </li>
               <li>
                 <a href="#" onClick={ () => this.setState({
-                  sortName: 'Radix Sort' }) }>
+                  sortName: 'Radix Sort', type: 'Distribution', stability: 'Stable', space: '0(N+K)', bestCase: 'Ω(NK)', averageCase: '0(NK)', worstCase: 'O(NK)' }) }>
                   <RadixIcon />
                   Radix
                 </a>
               </li>
               <li>
                 <a href="#" onClick={ () => this.setState({
-                  sortName: 'Merge Sort' }) }>
+                  sortName: 'Merge Sort', type: 'Comparison', stability: 'Stable', space: '0(N)', bestCase: 'Ω(log(N))', averageCase: '0(log(N))', worstCase: 'O(log(N))' }) }>
                   <RadixIcon />
                   Merge
                 </a>
               </li>
               <li>
                 <a href="#" onClick={ () => this.setState({
-                  sortName: 'Quicksort' }) }>
+                  sortName: 'Quicksort', type: 'Comparison', stability: 'Unstable', space: '0(log(N))', bestCase: 'Ω(log(N))', averageCase: '0(log(N))', worstCase: 'O(N^2)' }) }>
                   <RadixIcon />
                   Quicksort
                 </a>
