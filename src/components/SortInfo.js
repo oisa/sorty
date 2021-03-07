@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
 
 class SortInfo extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+    }
+  }
+
   render() {
     return (
       <div className="info-container">
-        <h2>Bubble Sort</h2>
+        <h2>{this.props.sortName}</h2>
         <ul className="info">
           <li>Type: Comparison Sort</li>
 

@@ -192,7 +192,7 @@ canvas {
   width: 100%;
 }
 
-.visualiser-buttons {
+.visualizer-buttons {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -246,7 +246,7 @@ canvas {
   margin-top: 5px;
 }
 
-.visualiser-buttons > button {
+.visualizer-buttons > button {
   margin: 20px;
   font-size: var(--font-m);
   padding: 10px 20px 15px 20px;
@@ -261,6 +261,12 @@ canvas {
   cursor: pointer;
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
+  transition: all 0.25s;
+}
+
+.visualizer-buttons > button:hover {
+  color: var(--secondary);
+  background-color: var(--primary);
 }
 
 
