@@ -40,13 +40,14 @@ const SpinningMesh = ({ position, color, speed, args }) => {
   );
 };
 
-class SortingVisualizerThreeTest extends Component {
+class SortingVisualizer extends Component {
 
   constructor(props) {
     super(props);
 
     this.state = {
       array: [],
+      arraySteps: [],
     };
   }
 
@@ -56,10 +57,10 @@ class SortingVisualizerThreeTest extends Component {
 
   resetArray() {
     const array = [];
-    for (let i = 0; i < 100; i++) {
-      array.push(randomIntFromInterval(5, 100));
+    for (let i = 0; i < 30; i++) {
+      array.push(randomIntFromInterval(5, 30));
     }
-    this.setState({ array });
+    this.setState({ array: array, arraySteps: array });
   }
 
   mergeSort() {
@@ -88,9 +89,11 @@ class SortingVisualizerThreeTest extends Component {
   }
 
 
-  bubbleSort() {
+  bubbleSortJoel() {
 
-    let array = this.state.array;
+    let array = this.state.arraySteps;
+
+    let storeArr = [];
 
     let swapped = true;
 
@@ -105,50 +108,94 @@ class SortingVisualizerThreeTest extends Component {
             [ array[i], array[i+1] ] = [ array[i+1], array[i] ];
             swapped = true;
 
-            this.setState({
-              array: array,
-            })
           }
+
+          let tmp = [...array];
+
+          storeArr.push(...[tmp]);
+
+          console.log(tmp);
+          // console.log(storeArr);
 
       }
       end--;
     }
 
-    return array;
+    console.log(storeArr);
+
+    setTimeout(() => {
+
+      for (let i = 0; i < storeArr.length; i++) {
+
+        console.log('test')
+
+        console.log(storeArr[i]);
+
+        setTimeout(() => {
+
+          this.setState({
+            array: storeArr[i],
+          })
+
+        }, i * 10);
+
+      };
+
+    }, 500);
+
   }
 
 
-  bubbleSort2() {
-    let inputArr = this.state.array;
-    let len = inputArr.length;
+  bubbleSort() {
+    let inputArr = this.state.arraySteps;
+    let storeArr = [];
     let swapped;
     do {
       swapped = false;
 
-      for (let i = 0; i < len; i++) {
+      for (let i = 0; i < inputArr.length; i++) {
 
-        console.log('outside the setTimeout');
+          if (inputArr[i] > inputArr[i + 1]) {
 
-        setTimeout(() => {
+              let tmp = inputArr[i];
+              inputArr[i] = inputArr[i + 1];
+              inputArr[i + 1] = tmp;
+              swapped = true;
 
-            if (inputArr[i] > inputArr[i + 1]) {
+              storeArr = [...storeArr, inputArr]
+          }
 
-                let tmp = inputArr[i];
-                inputArr[i] = inputArr[i + 1];
-                inputArr[i + 1] = tmp;
-                swapped = true;
-
-                this.setState({
-                  array: inputArr,
-                })
-            }
-            console.log('inside the setTimeout');
-
-          }, i * 100);
+          this.setState({
+            arraySteps: [...storeArr],
+          })
 
       }
     } while (swapped);
-    return inputArr;
+
+////////////////
+
+    setTimeout(() => {
+
+      for (let i = 0; i < storeArr.length; i++) {
+
+        console.log('test')
+
+        console.log(storeArr[i]);
+
+        setTimeout(() => {
+
+          this.setState({
+            array: storeArr[i],
+          })
+
+        }, i * 1000);
+
+      };
+
+    }, 1000);
+
+/////////////////
+
   }
 
   testSortingAlgorithms() {
@@ -182,7 +229,7 @@ class SortingVisualizerThreeTest extends Component {
 
         </div>
 
-        <button className="btn-sort" onClick={() => this.bubbleSort2()}>
+        <button className="btn-sort" onClick={() => this.bubbleSortJoel()}>
           Sort
           <SortIcon />
         </button>
@@ -190,7 +237,7 @@ class SortingVisualizerThreeTest extends Component {
         <Canvas
           colorManagement
           shadowMap
-          camera={{ position: [-130, 30, 130], fov: 60 }}>
+          camera={{ position: [-45, 30, 45], fov: 60 }}>
           <ambientLight intensity={0.3} />
           <directionalLight
             castShadow
@@ -207,24 +254,9 @@ class SortingVisualizerThreeTest extends Component {
           <pointLight position={[-10, 0, -20]} intensity={0.5} />
           <pointLight position={[0, -10, 0]} intensity={1.5} />
           <group>
-            {/*<mesh
-              rotation={[-Math.PI / 2, 0, 0]}
-              position={[0, -3, 0]}
-              receiveShadow>
-              <planeBufferGeometry attach='geometry' args={[100, 100]} />
-              <shadowMaterial attach='material' opacity={0.3} />
-            </mesh>*/}
-            {/*<SpinningMesh
-              position={[0, 1, 0]}
-              color='red'
-              args={[3, 2, 1]}
-              speed={2}
-            />
-            <SpinningMesh position={[-2, 1, -5]} color='pink' speed={2} />
-            <SpinningMesh position={[5, 1, -2]} color='pink' speed={2} />*/}
 
             { this.state.array.map((val, idx) => (
-              <SpinningMesh position={[ idx-100, val-35, idx]} args={[1, 1, 1]} key={ idx } color='red' speed={`0.${val}`} keyIdx={ idx } />
+              <SpinningMesh position={[ idx-30, val-5, idx]} args={[1, 1, 1]} key={ idx } color='red' speed={`0.${val}`} keyIdx={ idx } />
             )) }
 
           </group>
@@ -317,4 +349,4 @@ function doMerge(mainArray, startIdx, middleIdx, endIdx, auxiliaryArray, animati
   }
 }
 
-export default SortingVisualizerThreeTest;
+export default SortingVisualizer;
