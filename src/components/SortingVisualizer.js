@@ -68,9 +68,11 @@ class SortingVisualizer extends Component {
 
 
   resetArray() {
+
     const array = [];
     const arrayShuffled = [];
-    for (let i = 0; i < 30; i++) {
+
+    for (let i = 1; i < 30; i++) {
       array.push(i);
     }
 
@@ -84,6 +86,8 @@ class SortingVisualizer extends Component {
     }
 
     this.setState({ array: array, arraySteps: array });
+
+    console.log(array);
   }
 
 
@@ -91,36 +95,12 @@ class SortingVisualizer extends Component {
     if ( this.props.sortName === 'bubble' ) {
       this.bubbleSort();
     }
-    if ( this.props.sortName === 'insertion' ) {
-      console.log('insertion');
+    else if ( this.props.sortName === 'insertion' ) {
+      this.insertionSort();
     }
   }
 
-  mergeSort() {
-    const animations = getMergeSortAnimations(this.state.array);
-
-    for (let i = 0; i < animations.length; i++) {
-      const arrayBars = document.getElementsByClassName("array-bar");
-      const isColorChange = i % 3 !== 2;
-      if (isColorChange) {
-        const [barOneIdx, barTwoIdx] = animations[i];
-        const barOneStyle = arrayBars[barOneIdx].style;
-        const barTwoStyle = arrayBars[barTwoIdx].style;
-        const color = i % 3 === 0 ? "red" : "black";
-        setTimeout(() => {
-          barOneStyle.backgroundColor = color;
-          barTwoStyle.backgroundColor = color;
-        }, i * 10);
-      } else {
-        setTimeout(() => {
-          const [barOneIdx, newHeight] = animations[i];
-          const barOneStyle = arrayBars[barOneIdx].style;
-          barOneStyle.height = `${ newHeight }px`;
-        }, i * 10);
-      }
-    }
-  }
-
+// Bubble Sort /////////////////////////////////////////////////////////////////
 
   bubbleSort() {
 
@@ -178,32 +158,31 @@ class SortingVisualizer extends Component {
 
   }
 
+// Insertion Sort //////////////////////////////////////////////////////////////
 
-  bubbleSortAlt() {
-    let inputArr = this.state.arraySteps;
+  insertionSort() {
+
+    let array = this.state.array;
+
     let storeArr = [];
-    let swapped;
-    do {
-      swapped = false;
 
-      for (let i = 0; i < inputArr.length; i++) {
+    for (let i = 0; i < array.length; i++) {
 
-          if (inputArr[i] > inputArr[i + 1]) {
+      const item = array[i];
 
-              let tmp = inputArr[i];
-              inputArr[i] = inputArr[i + 1];
-              inputArr[i + 1] = tmp;
-              swapped = true;
-
-              storeArr = [...storeArr, inputArr]
-          }
-
-          this.setState({
-            arraySteps: [...storeArr],
-          })
-
+      for (var j = i-1; j >= 0 && array[j] > item; j--) {
+        array[j+1] = array[j];
       }
-    } while (swapped);
+
+      array[j+1] = item;
+
+      let tmp = [...array];
+
+      storeArr.push(...[tmp]);
+
+      console.log(tmp);
+
+    }
 
     setTimeout(() => {
 
@@ -219,48 +198,69 @@ class SortingVisualizer extends Component {
             array: storeArr[i],
           })
 
-        }, i * 1000);
+        }, i * this.state.speed);
 
       };
 
-    }, 1000);
+    }, 300);
+
+    console.log(storeArr);
 
   }
 
 
-  testSortingAlgorithms() {
-    for (let i = 0; i < 100; i++) {
-      const array = [];
-      for (let i = 0; i < randomIntFromInterval(1, 1000); i++) {
-        array.push(randomIntFromInterval(-1000, 1000));
-      }
-      const javaScriptSortedArray = array.slice().sort((a, b) => a - b);
-      const mergeSortedArray = getMergeSortAnimations(array.slice());
-      console.log(arraysAreEqual(javaScriptSortedArray, mergeSortedArray));
-    }
-  }
-
-
-  // findMeAFunction() {
-  //  switch (this.props.method) {
-  //   case this.props.method === "bubble":
-  //     return this.bubbleSort()
-  //     break;
-  //   default:
-  //     break;
-  // }};
+  // bubbleSortAlt() {
+  //   let inputArr = this.state.arraySteps;
+  //   let storeArr = [];
+  //   let swapped;
+  //   do {
+  //     swapped = false;
+  //
+  //     for (let i = 0; i < inputArr.length; i++) {
+  //
+  //         if (inputArr[i] > inputArr[i + 1]) {
+  //
+  //             let tmp = inputArr[i];
+  //             inputArr[i] = inputArr[i + 1];
+  //             inputArr[i + 1] = tmp;
+  //             swapped = true;
+  //
+  //             storeArr = [...storeArr, inputArr]
+  //         }
+  //
+  //         this.setState({
+  //           arraySteps: [...storeArr],
+  //         })
+  //
+  //     }
+  //   } while (swapped);
+  //
+  //   setTimeout(() => {
+  //
+  //     for (let i = 0; i < storeArr.length; i++) {
+  //
+  //       console.log('test')
+  //
+  //       console.log(storeArr[i]);
+  //
+  //       setTimeout(() => {
+  //
+  //         this.setState({
+  //           array: storeArr[i],
+  //         })
+  //
+  //       }, i * 1000);
+  //
+  //     };
+  //
+  //   }, 1000);
+  //
+  // }
 
 
   render() {
     return (
       <div className="visualiser-container">
-
-        {/*<div className="visualiser">
-          { this.state.array.map((val, idx) => (
-            <div className="array-bar" key={ idx } style={{height: `${ val }px`, width: "5px"}}>
-            </div>
-          )) }
-        </div>*/}
 
         <div className="visualizer-buttons">
 
@@ -314,59 +314,6 @@ class SortingVisualizer extends Component {
 
 function randomIntFromInterval(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
-}
-
-function arraysAreEqual(arrayOne, arrayTwo) {
-  if (arrayOne.length !== arrayTwo.length) return false;
-  for (let i = 0; i < arrayOne.length; i++) {
-    if (arrayOne[i] !== arrayTwo[i]) return false;
-  }
-  return true;
-}
-
-function getMergeSortAnimations(array) {
-  const animations = [];
-  if (array.length <= 1) return array;
-  const auxiliaryArray = array.slice();
-  mergeSortHelper(array, 0, array.length - 1, auxiliaryArray, animations);
-  return animations;
-}
-
-function mergeSortHelper(mainArray, startIdx, endIdx, auxiliaryArray, animations) {
-  if (startIdx === endIdx) return;
-  const middleIdx = Math.floor((startIdx + endIdx) / 2);
-  mergeSortHelper(auxiliaryArray, startIdx, middleIdx, mainArray, animations);
-  mergeSortHelper(auxiliaryArray, middleIdx + 1, endIdx, mainArray, animations);
-  doMerge(mainArray, startIdx, middleIdx, endIdx, auxiliaryArray, animations);
-}
-
-function doMerge(mainArray, startIdx, middleIdx, endIdx, auxiliaryArray, animations) {
-  let k = startIdx;
-  let i = startIdx;
-  let j = middleIdx + 1;
-  while (i <= middleIdx && j <= endIdx) {
-    animations.push([i, j]);
-    animations.push([i, j]);
-    if (auxiliaryArray[i] <= auxiliaryArray[j]) {
-      animations.push([k, auxiliaryArray[i]]);
-      mainArray[k++] = auxiliaryArray[i++];
-    } else {
-      animations.push([k, auxiliaryArray[j]]);
-      mainArray[k++] = auxiliaryArray[j++];
-    }
-  }
-  while (i <= middleIdx) {
-    animations.push([i, i]);
-    animations.push([i, i]);
-    animations.push([k, auxiliaryArray[i]]);
-    mainArray[k++] = auxiliaryArray[i++];
-  }
-  while (j <= endIdx) {
-    animations.push([j, j]);
-    animations.push([j, j]);
-    animations.push([k, auxiliaryArray[j]]);
-    mainArray[k++] = auxiliaryArray[j++];
-  }
 }
 
 export default SortingVisualizer;
