@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/sorty/static/css/main.485678eb.chunk.css",
-    "main.js": "/sorty/static/js/main.27986014.chunk.js",
-    "main.js.map": "/sorty/static/js/main.27986014.chunk.js.map",
+    "main.css": "/sorty/static/css/main.cd61fede.chunk.css",
+    "main.js": "/sorty/static/js/main.977410e0.chunk.js",
+    "main.js.map": "/sorty/static/js/main.977410e0.chunk.js.map",
     "runtime-main.js": "/sorty/static/js/runtime-main.d771e6ae.js",
     "runtime-main.js.map": "/sorty/static/js/runtime-main.d771e6ae.js.map",
     "static/js/2.16677baf.chunk.js": "/sorty/static/js/2.16677baf.chunk.js",
@@ -10,13 +10,13 @@
     "static/js/3.96bc9bea.chunk.js": "/sorty/static/js/3.96bc9bea.chunk.js",
     "static/js/3.96bc9bea.chunk.js.map": "/sorty/static/js/3.96bc9bea.chunk.js.map",
     "index.html": "/sorty/index.html",
-    "static/css/main.485678eb.chunk.css.map": "/sorty/static/css/main.485678eb.chunk.css.map",
+    "static/css/main.cd61fede.chunk.css.map": "/sorty/static/css/main.cd61fede.chunk.css.map",
     "static/js/2.16677baf.chunk.js.LICENSE.txt": "/sorty/static/js/2.16677baf.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.d771e6ae.js",
     "static/js/2.16677baf.chunk.js",
-    "static/css/main.485678eb.chunk.css",
-    "static/js/main.27986014.chunk.js"
+    "static/css/main.cd61fede.chunk.css",
+    "static/js/main.977410e0.chunk.js"
   ]
 }
