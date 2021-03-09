@@ -58,11 +58,31 @@ class SortingVisualizer extends Component {
   }
 
 
-  resetArray() {
+  resetArrayRandom() {
     const array = [];
     for (let i = 0; i < 30; i++) {
       array.push(randomIntFromInterval(5, 30));
     }
+    this.setState({ array: array, arraySteps: array });
+  }
+
+
+  resetArray() {
+    const array = [];
+    const arrayShuffled = [];
+    for (let i = 0; i < 30; i++) {
+      array.push(i);
+    }
+
+    let m = array.length, t, i;
+
+    while (m) {
+      i = Math.floor(Math.random() * m--);
+      t = array[m];
+      array[m] = array[i];
+      array[i] = t;
+    }
+
     this.setState({ array: array, arraySteps: array });
   }
 
@@ -293,7 +313,6 @@ class SortingVisualizer extends Component {
 }
 
 function randomIntFromInterval(min, max) {
-  // min and max included
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
@@ -304,28 +323,6 @@ function arraysAreEqual(arrayOne, arrayTwo) {
   }
   return true;
 }
-
-// Merge Sort
-
-// // Initial solution
-// const mergeSort = array => {
-//   if (array.length === 1) return array;
-//   const middleIdx = Math.floor(array.length / 2);
-//   const firstHalf = mergeSort(array.slice(0, middleIdx));
-//   const secondHalf = mergeSort(array.slice(middleIdx));
-//   const sortedArray = [];
-//   let i = 0, j = 0;
-//   while (i < firstHalf.length && j < secondHalf.length) {
-//     if (firstHalf[i] < secondHalf[j]) {
-//       sortedArray.push(firstHalf[i++]);
-//     } else {
-//       sortedArray.push(secondHalf[j++]);
-//     }
-//   }
-//   while (i < firstHalf.length) sortedArray.push(firstHalf[i++]);
-//   while (j < secondHalf.length) sortedArray.push(secondHalf[j++]);
-//   return sortedArray;
-// };
 
 function getMergeSortAnimations(array) {
   const animations = [];
