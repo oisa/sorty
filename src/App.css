@@ -271,7 +271,7 @@ canvas {
 }
 
 
-/* ------ Data Visualisation Stylez ------ */
+/* ------ 2D Data Visualisation Stylez ------ */
 
 .array-bar {
   width: 2px;
@@ -284,6 +284,58 @@ canvas {
 
 /* ------ Utility ------ */
 
+.slider-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+  margin: 0 30px 30px 30px;
+}
+
+.slider-container > p {
+  margin-bottom: 25px;
+}
+
+.slider {
+  direction: rtl;
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  width: 100%;
+  background: transparent;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+
+input[type=range]:focus {
+  outline: none;
+}
+
+input[type=range]::-ms-track {
+  width: 100%;
+  cursor: pointer;
+
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+
+/* Special styling for WebKit/Blink */
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: 4px solid var(--primary);
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  background: var(--secondary);
+  cursor: pointer;
+  margin-top: -11px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+}
+
 ::-moz-selection {
   color: var(--secondary);
   background: rgba(var(--primary-rgb), 0.996);
@@ -292,6 +344,15 @@ canvas {
 ::selection {
   color: var(--secondary);
   background: rgba(var(--primary-rgb), 0.996);
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 3px;
+  cursor: pointer;
+  background: var(--primary);
+  border-radius: 40px;
+  border: 0.2px solid var(primary);
 }
 
 /* -------- DOS / Dark Mode ------- */
@@ -333,7 +394,7 @@ canvas {
   background: var(--primary);
   box-shadow: 0 0.1em 0.3em rgba(0,0,0,0.3);
   -webkit-transition: all 300ms;
--moz-transition: all 300ms;
+  -moz-transition: all 300ms;
   transition: all 300ms;
   cursor: pointer;
 }

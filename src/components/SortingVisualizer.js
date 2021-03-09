@@ -48,12 +48,15 @@ class SortingVisualizer extends Component {
     this.state = {
       array: [],
       arraySteps: [],
+      speed: 50,
     };
   }
+
 
   componentDidMount() {
     this.resetArray();
   }
+
 
   resetArray() {
     const array = [];
@@ -61,6 +64,16 @@ class SortingVisualizer extends Component {
       array.push(randomIntFromInterval(5, 30));
     }
     this.setState({ array: array, arraySteps: array });
+  }
+
+
+  determineMethod() {
+    if ( this.props.sortName === 'bubble' ) {
+      this.bubbleSort();
+    }
+    if ( this.props.sortName === 'insertion' ) {
+      console.log('poo fuck');
+    }
   }
 
   mergeSort() {
@@ -89,7 +102,7 @@ class SortingVisualizer extends Component {
   }
 
 
-  bubbleSortJoel() {
+  bubbleSort() {
 
     let array = this.state.arraySteps;
 
@@ -137,16 +150,16 @@ class SortingVisualizer extends Component {
             array: storeArr[i],
           })
 
-        }, i * 10);
+        }, i * this.state.speed);
 
       };
 
-    }, 500);
+    }, 300);
 
   }
 
 
-  bubbleSort() {
+  bubbleSortAlt() {
     let inputArr = this.state.arraySteps;
     let storeArr = [];
     let swapped;
@@ -172,8 +185,6 @@ class SortingVisualizer extends Component {
       }
     } while (swapped);
 
-////////////////
-
     setTimeout(() => {
 
       for (let i = 0; i < storeArr.length; i++) {
@@ -194,9 +205,8 @@ class SortingVisualizer extends Component {
 
     }, 1000);
 
-/////////////////
-
   }
+
 
   testSortingAlgorithms() {
     for (let i = 0; i < 100; i++) {
@@ -209,6 +219,17 @@ class SortingVisualizer extends Component {
       console.log(arraysAreEqual(javaScriptSortedArray, mergeSortedArray));
     }
   }
+
+
+  // findMeAFunction() {
+  //  switch (this.props.method) {
+  //   case this.props.method === "bubble":
+  //     return this.bubbleSort()
+  //     break;
+  //   default:
+  //     break;
+  // }};
+
 
   render() {
     return (
@@ -224,12 +245,14 @@ class SortingVisualizer extends Component {
         <div className="visualizer-buttons">
 
           <button onClick={() => this.resetArray()}>Generate New Array</button>
-          <button onClick={() => this.mergeSort()}>Merge Sort</button>
-          <button onClick={() => this.testSortingAlgorithms()}>Test Algo</button>
+          <div className="slider-container">
+            <p>Sort Speed</p>
+            <input className="slider" type="range" min="1" max="100" value={this.state.speed} onChange={(e) => {this.setState({speed: e.target.value})}}/>
+          </div>
 
         </div>
 
-        <button className="btn-sort" onClick={() => this.bubbleSortJoel()}>
+        <button className="btn-sort" onClick={() => this.determineMethod()}>
           Sort
           <SortIcon />
         </button>
@@ -237,7 +260,7 @@ class SortingVisualizer extends Component {
         <Canvas
           colorManagement
           shadowMap
-          camera={{ position: [-45, 30, 45], fov: 60 }}>
+          camera={{ position: [-40, 25, 40], fov: 60 }}>
           <ambientLight intensity={0.3} />
           <directionalLight
             castShadow
