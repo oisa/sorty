@@ -30,6 +30,7 @@ class App extends Component {
       bestCase: 'Ω(N)',
       averageCase: '0(N^2)',
       worstCase: 'O(N^2)',
+      active: '',
     };
   }
 
@@ -43,43 +44,43 @@ class App extends Component {
           <div className="sort-options-nav">
             <ul className="sort-list">
               <li>
-                <a href="#" onClick={ () => this.setState({
-                  method: 'bubble', sortName: 'Bubble Sort', type: 'Comparison', stability: 'Stable', space: '0(1)', bestCase: 'Ω(N)', averageCase: '0(N^2)', worstCase: 'O(N^2)' }) }>
+                <a className={this.state.active === 'bubble' ? 'active' : {}} href="#" onClick={ () => this.setState({
+                  method: 'bubble', sortName: 'Bubble Sort', type: 'Comparison', stability: 'Stable', space: '0(1)', bestCase: 'Ω(N)', averageCase: '0(N^2)', worstCase: 'O(N^2)', active: 'bubble' }) }>
                   <BubbleIcon />
                   Bubble
                 </a>
               </li>
               <li>
-                <a href="#" onClick={ () => this.setState({
-                  method: 'insertion', sortName: 'Insertion Sort', type: 'Comparison', stability: 'Stable', space: '0(1)', bestCase: 'Ω(N)', averageCase: '0(N^2)', worstCase: 'O(N^2)' }) }>
+                <a className={this.state.active === 'insertion' ? 'active' : {}} href="#" onClick={ () => this.setState({
+                  method: 'insertion', sortName: 'Insertion Sort', type: 'Comparison', stability: 'Stable', space: '0(1)', bestCase: 'Ω(N)', averageCase: '0(N^2)', worstCase: 'O(N^2)', active: 'insertion' }) }>
                   <InsertionIcon />
                   Insertion
                 </a>
               </li>
               <li>
-                <a href="#" onClick={ () => this.setState({
-                  method: 'bucket', sortName: 'Bucket Sort', type: 'Distribution', stability: 'Stable', space: '0(N+K)', bestCase: 'Ω(N+K)', averageCase: '0(N+K)', worstCase: 'O(N^2)' }) }>
+                <a className={this.state.active === 'bucket' ? 'active' : {}} href="#" onClick={ () => this.setState({
+                  method: 'bucket', sortName: 'Bucket Sort', type: 'Distribution', stability: 'Stable', space: '0(N+K)', bestCase: 'Ω(N+K)', averageCase: '0(N+K)', worstCase: 'O(N^2)', active: 'bucket' }) }>
                   <BucketIcon />
                   Bucket
                 </a>
               </li>
               <li>
-                <a href="#" onClick={ () => this.setState({
-                  method: 'radix', sortName: 'Radix Sort', type: 'Distribution', stability: 'Stable', space: '0(N+K)', bestCase: 'Ω(NK)', averageCase: '0(NK)', worstCase: 'O(NK)' }) }>
+                <a className={this.state.active === 'radix' ? 'active' : {}} href="#" onClick={ () => this.setState({
+                  method: 'radix', sortName: 'Radix Sort', type: 'Distribution', stability: 'Stable', space: '0(N+K)', bestCase: 'Ω(NK)', averageCase: '0(NK)', worstCase: 'O(NK)', active: 'radix' }) }>
                   <RadixIcon />
                   Radix
                 </a>
               </li>
               <li>
-                <a href="#" onClick={ () => this.setState({
-                  method: 'merge', sortName: 'Merge Sort', type: 'Comparison', stability: 'Stable', space: '0(N)', bestCase: 'Ω(log(N))', averageCase: '0(log(N))', worstCase: 'O(log(N))' }) }>
+                <a className={this.state.active === 'merge' ? 'active' : {}} href="#" onClick={ () => this.setState({
+                  method: 'merge', sortName: 'Merge Sort', type: 'Comparison', stability: 'Stable', space: '0(N)', bestCase: 'Ω(log(N))', averageCase: '0(log(N))', worstCase: 'O(log(N))', active: 'merge' }) }>
                   <RadixIcon />
                   Merge
                 </a>
               </li>
               <li>
-                <a href="#" onClick={ () => this.setState({
-                  method: 'quicksort', sortName: 'Quicksort', type: 'Comparison', stability: 'Unstable', space: '0(log(N))', bestCase: 'Ω(log(N))', averageCase: '0(log(N))', worstCase: 'O(N^2)' }) }>
+                <a className={this.state.active === 'quicksort' ? 'active' : {}} href="#" onClick={ () => this.setState({
+                  method: 'quicksort', sortName: 'Quicksort', type: 'Comparison', stability: 'Unstable', space: '0(log(N))', bestCase: 'Ω(log(N))', averageCase: '0(log(N))', worstCase: 'O(N^2)', active: 'quicksort' }) }>
                   <RadixIcon />
                   Quicksort
                 </a>

@@ -72,7 +72,7 @@ class SortingVisualizer extends Component {
       this.bubbleSort();
     }
     if ( this.props.sortName === 'insertion' ) {
-      console.log('poo fuck');
+      console.log('insertion');
     }
   }
 
