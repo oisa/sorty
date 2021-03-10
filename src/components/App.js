@@ -15,6 +15,8 @@ import BubbleIcon from '../assets/BubbleIcon';
 import InsertionIcon from '../assets/InsertionIcon';
 import BucketIcon from '../assets/BucketIcon';
 import RadixIcon from '../assets/RadixIcon';
+import MergeIcon from '../assets/MergeIcon';
+
 
 class App extends Component {
 
@@ -74,7 +76,7 @@ class App extends Component {
               <li>
                 <a className={this.state.active === 'merge' ? 'active' : {}} href="#" onClick={ () => this.setState({
                   method: 'merge', sortName: 'Merge Sort', type: 'Comparison', stability: 'Stable', space: '0(N)', bestCase: 'Ω(log(N))', averageCase: '0(log(N))', worstCase: 'O(log(N))', active: 'merge' }) }>
-                  <RadixIcon />
+                  <MergeIcon />
                   Merge
                 </a>
               </li>

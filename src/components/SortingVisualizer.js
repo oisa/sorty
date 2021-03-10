@@ -50,13 +50,7 @@ class SortingVisualizer extends Component {
       arraySteps: [],
       isActive: false,
       speed: 50,
-      time: 0,
-      arr0: [],
-      arr1: [],
-      arr2: [],
-      arr3: [],
-      arr4: [],
-      arr5: [],
+      timer: 0,
     };
   }
 
@@ -93,10 +87,7 @@ class SortingVisualizer extends Component {
       array[i] = t;
     }
 
-    this.setState({ array: array, arraySteps: array, arr0: [],
-          arr1: [],
-          arr2: [],
-          arr3: [], });
+    this.setState({ array: array, arraySteps: array, arr0: [], arr1: [], arr2: [], arr3: [], });
 
   }
 
@@ -112,7 +103,12 @@ class SortingVisualizer extends Component {
     else if ( this.props.sortName === 'bucket' ) {
       this.bucketSort();
     }
+
+    else if ( this.props.sortName === 'merge' ) {
+      this.mergeSort();
+    }
   }
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // Bubble Sort /////////////////////////////////////////////////////////////////
@@ -359,6 +355,50 @@ class SortingVisualizer extends Component {
   }
 
 
+////////////////////////////////////////////////////////////////////////////////
+// Merge Sort //////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+  mergeSort() {
+
+    let arr = [2,6,4,8,7,9,3,5];
+
+    if (arr.length <= 1) {
+      return arr;
+    } else {
+      const middleIndex = Math.floor(arr.length / 2);
+      const left = arr.slice(0, middleIndex);
+      const right = arr.slice(middleIndex);
+
+      const sortedLeft = [2,3,4,5];
+      const sortedRight = [6,7,8,9];
+
+      // const sortedLeft = this.mergeSort(left);
+      // const sortedRight = this.mergeSort(right);
+
+      return this.merge(sortedLeft, sortedRight);
+
+    }
+
+  }
+
+  merge(arr1, arr2) {
+    var result = [];
+
+    while (arr1.length && arr2.length) {
+      if(arr1[0] <= arr2[0]) {
+        result.push(arr1.shift());
+      } else {
+        result.push(arr2.shift());
+      }
+    }
+
+    this.setState({
+      array: result.concat(arr1, arr2)
+    })
+    }
+
+
   render() {
     return (
       <div className="visualiser-container">
@@ -369,9 +409,6 @@ class SortingVisualizer extends Component {
           <div className="slider-container">
             <p>Sort Speed</p>
             <input className="slider" type="range" min="1" max="100" value={this.state.speed} onChange={(e) => {this.setState({speed: e.target.value})}}/>
-          </div>
-          <div>
-            <p>{ this.state.time }</p>
           </div>
 
         </div>
