@@ -405,6 +405,8 @@ class SortingVisualizer extends Component {
       };
       arr = buckets.flat();
 
+      console.log(buckets);
+
       let tmp = [...arr];
 
       storeArr.push(...[tmp]);

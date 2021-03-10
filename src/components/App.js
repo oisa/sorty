@@ -16,6 +16,7 @@ import InsertionIcon from '../assets/InsertionIcon';
 import BucketIcon from '../assets/BucketIcon';
 import RadixIcon from '../assets/RadixIcon';
 import MergeIcon from '../assets/MergeIcon';
+import QuicksortIcon from '../assets/QuicksortIcon';
 
 
 class App extends Component {
@@ -83,7 +84,7 @@ class App extends Component {
               <li>
                 <a className={this.state.active === 'quicksort' ? 'active' : {}} href="#" onClick={ () => this.setState({
                   method: 'quicksort', sortName: 'Quicksort', type: 'Comparison', stability: 'Unstable', space: '0(log(N))', bestCase: 'Ω(log(N))', averageCase: '0(log(N))', worstCase: 'O(N^2)', active: 'quicksort' }) }>
-                  <RadixIcon />
+                  <QuicksortIcon />
                   Quicksort
                 </a>
               </li>
