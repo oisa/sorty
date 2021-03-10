@@ -1,14 +1,34 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 
 class SortInfo extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      ram: 0
     }
   }
 
+  componentDidMount() {
+
+    this.ramUsage();
+
+  }
+
+  ramUsage() {
+
+    this.setState({
+      ram: performance.memory.usedJSHeapSize
+    })
+
+    setTimeout(() => {this.ramUsage()}, 1000);
+
+  }
+
   render() {
+
+    // this.ramUsage()
+
     return (
       <div className="info-container">
         <h2>{ this.props.sortName }</h2>
@@ -25,9 +45,9 @@ class SortInfo extends Component {
 
           <li>Worst Case: { this.props.worstCase }</li>
 
-          <li>RAM Usage: 1530000000</li>
+          <li>RAM Usage: { this.state.ram } bytes</li>
 
-          <li>Time taken: 11s</li>
+          {/*<li>Time taken: 11s</li>*/}
         </ul>
       </div>
     )
