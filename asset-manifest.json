@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/sorty/static/css/main.cd61fede.chunk.css",
-    "main.js": "/sorty/static/js/main.4a4f92a1.chunk.js",
-    "main.js.map": "/sorty/static/js/main.4a4f92a1.chunk.js.map",
+    "main.js": "/sorty/static/js/main.3e4980a4.chunk.js",
+    "main.js.map": "/sorty/static/js/main.3e4980a4.chunk.js.map",
     "runtime-main.js": "/sorty/static/js/runtime-main.d771e6ae.js",
     "runtime-main.js.map": "/sorty/static/js/runtime-main.d771e6ae.js.map",
-    "static/js/2.1b6191ba.chunk.js": "/sorty/static/js/2.1b6191ba.chunk.js",
-    "static/js/2.1b6191ba.chunk.js.map": "/sorty/static/js/2.1b6191ba.chunk.js.map",
+    "static/js/2.2687d868.chunk.js": "/sorty/static/js/2.2687d868.chunk.js",
+    "static/js/2.2687d868.chunk.js.map": "/sorty/static/js/2.2687d868.chunk.js.map",
     "static/js/3.96bc9bea.chunk.js": "/sorty/static/js/3.96bc9bea.chunk.js",
     "static/js/3.96bc9bea.chunk.js.map": "/sorty/static/js/3.96bc9bea.chunk.js.map",
     "index.html": "/sorty/index.html",
     "static/css/main.cd61fede.chunk.css.map": "/sorty/static/css/main.cd61fede.chunk.css.map",
-    "static/js/2.1b6191ba.chunk.js.LICENSE.txt": "/sorty/static/js/2.1b6191ba.chunk.js.LICENSE.txt"
+    "static/js/2.2687d868.chunk.js.LICENSE.txt": "/sorty/static/js/2.2687d868.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.d771e6ae.js",
-    "static/js/2.1b6191ba.chunk.js",
+    "static/js/2.2687d868.chunk.js",
     "static/css/main.cd61fede.chunk.css",
-    "static/js/main.4a4f92a1.chunk.js"
+    "static/js/main.3e4980a4.chunk.js"
   ]
 }
