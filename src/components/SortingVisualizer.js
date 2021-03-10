@@ -48,7 +48,15 @@ class SortingVisualizer extends Component {
     this.state = {
       array: [],
       arraySteps: [],
+      isActive: false,
       speed: 50,
+      time: 0,
+      arr0: [],
+      arr1: [],
+      arr2: [],
+      arr3: [],
+      arr4: [],
+      arr5: [],
     };
   }
 
@@ -72,7 +80,7 @@ class SortingVisualizer extends Component {
     const array = [];
     const arrayShuffled = [];
 
-    for (let i = 1; i < 30; i++) {
+    for (let i = 1; i < 31; i++) {
       array.push(i);
     }
 
@@ -85,9 +93,11 @@ class SortingVisualizer extends Component {
       array[i] = t;
     }
 
-    this.setState({ array: array, arraySteps: array });
+    this.setState({ array: array, arraySteps: array, arr0: [],
+          arr1: [],
+          arr2: [],
+          arr3: [], });
 
-    console.log(array);
   }
 
 
@@ -98,9 +108,15 @@ class SortingVisualizer extends Component {
     else if ( this.props.sortName === 'insertion' ) {
       this.insertionSort();
     }
+
+    else if ( this.props.sortName === 'bucket' ) {
+      this.bucketSort();
+    }
   }
 
+////////////////////////////////////////////////////////////////////////////////
 // Bubble Sort /////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 
   bubbleSort() {
 
@@ -158,11 +174,13 @@ class SortingVisualizer extends Component {
 
   }
 
+////////////////////////////////////////////////////////////////////////////////
 // Insertion Sort //////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 
   insertionSort() {
 
-    let array = this.state.array;
+    let array = this.state.arraySteps;
 
     let storeArr = [];
 
@@ -180,17 +198,17 @@ class SortingVisualizer extends Component {
 
       storeArr.push(...[tmp]);
 
-      console.log(tmp);
-
     }
 
     setTimeout(() => {
 
+      this.setState({
+        isActive: true,
+      });
+
+      let counter = this.state.time;
+
       for (let i = 0; i < storeArr.length; i++) {
-
-        console.log('test')
-
-        console.log(storeArr[i]);
 
         setTimeout(() => {
 
@@ -198,64 +216,159 @@ class SortingVisualizer extends Component {
             array: storeArr[i],
           })
 
+          if (i === (storeArr.length - 1)) {
+            this.setState({
+              isActive: false,
+            });
+          }
+
         }, i * this.state.speed);
 
       };
 
+      // while (this.state.isActive) {
+      //
+      //   console.log('testicles')
+      //
+      //     // setTimeout(() => {
+      //     //
+      //     //   this.setState({
+      //     //     isActive: counter++,
+      //     //   });
+      //     //
+      //     // }, 1000);
+      //
+      //   }
+
     }, 300);
 
-    console.log(storeArr);
+    // console.log(storeArr);
+
+  }
+
+////////////////////////////////////////////////////////////////////////////////
+// Bucket Sort /////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+  bucketSort() {
+
+    let items = this.state.arraySteps;
+    let bucketSize = 10;
+
+    let arr0 = [];
+    let arr1 = [];
+    let arr2 = [];
+
+// Insertion sort for within the buckets.
+
+  const insertionSortBucket = (input, index) => {
+
+    let storeArr = [];
+
+    for (let i = 0; i < input.length; i++) {
+
+      const item = input[i];
+
+      for (var j = i-1; j >= 0 && input[j] > item; j--) {
+        input[j+1] = input[j];
+      }
+
+      input[j+1] = item;
+
+      let tmp = [...input];
+
+      storeArr.push(...[tmp]);
+
+    }
+
+    setTimeout(() => {
+
+      for (let i = 0; i < storeArr.length; i++) {
+
+        setTimeout(() => {
+
+          if (index === 0) {
+            // this.setState({
+            //   arr0: storeArr[i]
+            // });
+            arr0 = storeArr[i];
+            console.log(index, arr0);
+          }
+
+          else if (index === 1) {
+            // this.setState({
+            //   arr1: storeArr[i]
+            // })
+            arr1 = storeArr[i];
+            console.log(index, arr1);
+          }
+
+          else if (index === 2) {
+            // this.setState({
+            //   arr2: storeArr[i]
+            // })
+            arr2 = storeArr[i];
+            console.log(index, arr2);
+          }
+
+          this.setState({
+            array: [...arr0, ...arr1, ...arr2],
+          })
+
+          if (i === (storeArr.length - 1)) {
+            this.setState({
+              isActive: false,
+            });
+          }
+
+        }, i * this.state.speed);
+
+      };
+
+    }, 500);
+
+    return input;
 
   }
 
 
-  // bubbleSortAlt() {
-  //   let inputArr = this.state.arraySteps;
-  //   let storeArr = [];
-  //   let swapped;
-  //   do {
-  //     swapped = false;
-  //
-  //     for (let i = 0; i < inputArr.length; i++) {
-  //
-  //         if (inputArr[i] > inputArr[i + 1]) {
-  //
-  //             let tmp = inputArr[i];
-  //             inputArr[i] = inputArr[i + 1];
-  //             inputArr[i + 1] = tmp;
-  //             swapped = true;
-  //
-  //             storeArr = [...storeArr, inputArr]
-  //         }
-  //
-  //         this.setState({
-  //           arraySteps: [...storeArr],
-  //         })
-  //
-  //     }
-  //   } while (swapped);
-  //
-  //   setTimeout(() => {
-  //
-  //     for (let i = 0; i < storeArr.length; i++) {
-  //
-  //       console.log('test')
-  //
-  //       console.log(storeArr[i]);
-  //
-  //       setTimeout(() => {
-  //
-  //         this.setState({
-  //           array: storeArr[i],
-  //         })
-  //
-  //       }, i * 1000);
-  //
-  //     };
-  //
-  //   }, 1000);
-  //
-  // }
+// Determin min and max values
+    if(items.length === 0) { return items; }
+
+    let min = Infinity, max = -Infinity;
+
+    for (let i = 0; i < items.length; i++) {
+
+      if (items[i] < min) {
+        min = items[i]
+      }
+
+      if (items[i] > max) {
+        max = items[i]
+      }
+
+    }
+
+    const bucketCount = Math.floor((max - min) / bucketSize) + 1;
+    const buckets = new Array(bucketCount);
+
+    for (let i = 0; i < buckets.length; i++) {
+      buckets[i] = [];
+    }
+
+    for (let i = 0; i < items.length; i++) {
+      buckets[ Math.floor((items[i] - min) / bucketSize) ].push( items[i] );
+    }
+
+    items = [];
+    for (let i = 0; i < buckets.length; i++) {
+
+      buckets[i] = insertionSortBucket( buckets[i], i );
+      items = items.concat( buckets[i] );
+
+    }
+
+  }
 
 
   render() {
@@ -268,6 +381,9 @@ class SortingVisualizer extends Component {
           <div className="slider-container">
             <p>Sort Speed</p>
             <input className="slider" type="range" min="1" max="100" value={this.state.speed} onChange={(e) => {this.setState({speed: e.target.value})}}/>
+          </div>
+          <div>
+            <p>{ this.state.time }</p>
           </div>
 
         </div>
