@@ -2,7 +2,7 @@
   "name": "sorty",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://sorty.dev/",
+  "homepage": "https://www.sorty.dev/",
   "dependencies": {
     "@react-three/drei": "^2.2.7",
     "@testing-library/jest-dom": "^5.11.9",
