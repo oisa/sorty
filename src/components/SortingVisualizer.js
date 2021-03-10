@@ -288,27 +288,15 @@ class SortingVisualizer extends Component {
         setTimeout(() => {
 
           if (index === 0) {
-            // this.setState({
-            //   arr0: storeArr[i]
-            // });
             arr0 = storeArr[i];
-            console.log(index, arr0);
           }
 
           else if (index === 1) {
-            // this.setState({
-            //   arr1: storeArr[i]
-            // })
             arr1 = storeArr[i];
-            console.log(index, arr1);
           }
 
           else if (index === 2) {
-            // this.setState({
-            //   arr2: storeArr[i]
-            // })
             arr2 = storeArr[i];
-            console.log(index, arr2);
           }
 
           this.setState({
