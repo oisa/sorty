@@ -104,6 +104,10 @@ class SortingVisualizer extends Component {
       this.bucketSort();
     }
 
+    else if ( this.props.sortName === 'radix' ) {
+      this.radixSort();
+    }
+
     else if ( this.props.sortName === 'merge' ) {
       this.mergeSort();
     }
@@ -356,6 +360,84 @@ class SortingVisualizer extends Component {
 
 
 ////////////////////////////////////////////////////////////////////////////////
+// Radix Sort //////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+  radixSort() {
+
+    let storeArr = [];
+
+// Find largest number value's length to determine how many times the fn should run
+    const largestNum = arr => {
+      let largest = "0";
+
+      arr.forEach(num => {
+        const strNum = String(num);
+
+        if (strNum.length > largest.length) largest = strNum;
+      });
+      return largest.length;
+    };
+
+
+// Retrieve numbers in the string values
+    const getNum = (num, index) => {
+      const strNum = String(num);
+      let end = strNum.length - 1;
+      const foundNum = strNum[end - index];
+      if (foundNum === undefined) return 0;
+      else return foundNum;
+    };
+
+
+// Radix sort
+    let arr = this.state.array;
+
+    let maxLength = largestNum(arr);
+
+    for (let i = 0; i < maxLength; i++) {
+      let buckets = Array.from({ length: 10 }, () => []);
+
+      for (let j = 0; j < arr.length; j++) {
+        let num = getNum(arr[j], i);
+
+        if (num !== undefined) buckets[num].push(arr[j]);
+      };
+      arr = buckets.flat();
+
+      let tmp = [...arr];
+
+      storeArr.push(...[tmp]);
+
+    };
+
+
+    setTimeout(() => {
+
+      for (let i = 0; i < storeArr.length; i++) {
+
+        setTimeout(() => {
+
+          this.setState({
+            array: storeArr[i],
+          })
+
+          if (i === (storeArr.length - 1)) {
+            this.setState({
+              isActive: false,
+            });
+          }
+
+        }, i * this.state.speed * 20);
+
+      };
+
+    }, 300);
+
+  }
+
+
+////////////////////////////////////////////////////////////////////////////////
 // Merge Sort //////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -370,13 +452,22 @@ class SortingVisualizer extends Component {
       const left = arr.slice(0, middleIndex);
       const right = arr.slice(middleIndex);
 
-      const sortedLeft = [2,3,4,5];
-      const sortedRight = [6,7,8,9];
+      // const sortedLeft = [2,3,4,5];
+      // const sortedRight = [6,7,8,9];
 
-      // const sortedLeft = this.mergeSort(left);
-      // const sortedRight = this.mergeSort(right);
+      let sortedLeft = [];
+      let sortedRight = [];
 
-      return this.merge(sortedLeft, sortedRight);
+      setTimeout(() => {
+
+        sortedLeft = this.mergeSort(left);
+        sortedRight = this.mergeSort(right);
+
+        console.log(sortedLeft, sortedRight);
+
+        return this.merge(sortedLeft, sortedRight);
+
+      }, 1000);
 
     }
 
