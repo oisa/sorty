@@ -27,8 +27,6 @@ class SortInfo extends Component {
 
   render() {
 
-    // this.ramUsage()
-
     return (
       <div className="info-container">
         <h2>{ this.props.sortName }</h2>

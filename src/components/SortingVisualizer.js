@@ -445,7 +445,7 @@ class SortingVisualizer extends Component {
 
   mergeSort() {
 
-    let arr = [2,6,4,8,7,9,3,5];
+    let arr = this.state.array;
 
     if (arr.length <= 1) {
       return arr;
@@ -469,7 +469,7 @@ class SortingVisualizer extends Component {
 
         return this.merge(sortedLeft, sortedRight);
 
-      }, 1000);
+      }, 100);
 
     }
 
@@ -486,8 +486,10 @@ class SortingVisualizer extends Component {
       }
     }
 
+    let tmp = result.concat(arr1, arr2);
+
     this.setState({
-      array: result.concat(arr1, arr2)
+      array: tmp
     })
     }
 
