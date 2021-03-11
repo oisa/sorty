@@ -1,70 +1,38 @@
-# Getting Started with Create React App
+# Sorty!
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to Sorty, your friendly neighbourhood sorting method visualiser :)
 
-## Available Scripts
+This was a personal goal of mine, to learn more about the way the different sorting methods function and then from there, how to show how they do their thing. It's not a new idea of course, though I felt it was an exercise I wanted to explore.
 
-In the project directory, you can run:
+Visit Sorty at [sorty.dev](https://sorty.dev)!
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+![Screenshot Main Shot](public/sorty-screenshot-1.png)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
+## Features
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Sort the array of cubes using the sort method of your choosing. See how the different sorting algorithm types sort data and see their respective time and space complexities in the bottom left alongside their best, worst and average case scenarios for each. Adjust the speed to taste. 🏃🏼
 
-### `npm run build`
+For a little extra fun, try toggling from DOS mode into Atari mode. 🕹👀
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## The Stack 🥞
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+React was used for this project, another exercise I wanted to try particularly with threejs which was the framework used for the three dimensional elements.
 
-### `npm run eject`
+With a sprinkling of Node and some good old fashioned sorting methods, Sorty was born.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+The bubble (Adrien Coquet) and bucket (Nociconist) icons were sourced from The Noun Project.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### threejs 📦
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+This was the first exposure I had to threejs
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Special Mentions 🗣
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+A huge thank you to Joel, Guillaume and Stacey for all the help on this one from the GA crew. They really guided at the pertinent points, and I'm so grateful for this. Guillaume in particular smashed it out of the park with the array storage method guidance which was inspired.
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Shout out to Andre and Aron for also supporting me particularly in the land of React - you guys are wizzes.
