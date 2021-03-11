@@ -93,6 +93,18 @@ class SortingVisualizer extends Component {
 
 
   determineMethod() {
+
+    // const equals = (a, b) =>
+    // a.length === b.length &&
+    // a.every((v, i) => v === b[i]);
+    //
+    // const s = this.state.array
+    // const t = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]
+    //
+    // if ( equals(s, t) ) {
+    //   this.resetArray();
+    // }
+
     if ( this.props.sortName === 'bubble' ) {
       this.bubbleSort();
     }
@@ -111,10 +123,6 @@ class SortingVisualizer extends Component {
     else if ( this.props.sortName === 'merge' ) {
       this.mergeSort();
     }
-
-    // if ( this.state.array !== [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30] && ) {
-    //   this.resetArray();
-    // }
 
   }
 
