@@ -494,7 +494,7 @@ class SortingVisualizer extends Component {
 
           <button onClick={() => this.resetArray()}>Generate New Array</button>
           <div className="slider-container">
-            <p>Sort Speed</p>
+            <p>Sort speed</p>
             <input className="slider" type="range" min="1" max="100" value={this.state.speed} onChange={(e) => {this.setState({speed: e.target.value})}}/>
           </div>
 

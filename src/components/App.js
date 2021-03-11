@@ -8,7 +8,7 @@ import SortOptions from './SortOptions';
 import SortInfo from './SortInfo';
 import SortingVisualizer2D from './SortingVisualizer2D.js';
 import SortingVisualizer from './SortingVisualizer.js';
-import DosDarkMode from './DosDarkMode';
+import DosAtariMode from './DosAtariMode';
 
 // Buttons
 import BubbleIcon from '../assets/BubbleIcon';
@@ -106,7 +106,7 @@ class App extends Component {
           <SortingVisualizer sortName= {this.state.method} />
         </div>
 
-        <DosDarkMode />
+        <DosAtariMode />
 
       </div>
     );
