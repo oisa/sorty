@@ -1,29 +1,31 @@
 import React, { Component, useState } from 'react';
+import RenderInBrowser from 'react-render-in-browser';
 
 class SortInfo extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      ram: 0
+      ram: 0,
     }
   }
 
-  componentDidMount() {
-
-    this.ramUsage();
-
-  }
-
-  ramUsage() {
-
-    this.setState({
-      ram: performance.memory.usedJSHeapSize
-    })
-
-    setTimeout(() => {this.ramUsage()}, 1000);
-
-  }
+  // Commented out showing RAM Usage
+  // componentDidMount() {
+  //
+  //   this.ramUsage();
+  //
+  // }
+  //
+  // ramUsage() {
+  //
+  //   this.setState({
+  //     ram: performance.memory.usedJSHeapSize
+  //   })
+  //
+  //   setTimeout(() => {this.ramUsage()}, 1000);
+  //
+  // }
 
   render() {
 
@@ -43,7 +45,9 @@ class SortInfo extends Component {
 
           <li>Worst Case: { this.props.worstCase }</li>
 
-          <li>RAM Usage: { this.state.ram } bytes</li>
+          {/*<RenderInBrowser chrome only>
+            <li>RAM Usage: { this.state.ram } bytes</li>
+          </RenderInBrowser>*/}
 
           {/*<li>Time taken: 11s</li>*/}
         </ul>
