@@ -87,7 +87,7 @@ class SortingVisualizer extends Component {
       array[i] = t;
     }
 
-    this.setState({ array: array, arraySteps: array, arr0: [], arr1: [], arr2: [], arr3: [], });
+    this.setState({ array: array, arraySteps: array });
 
   }
 
@@ -111,6 +111,11 @@ class SortingVisualizer extends Component {
     else if ( this.props.sortName === 'merge' ) {
       this.mergeSort();
     }
+
+    // if ( this.state.array !== [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30] && ) {
+    //   this.resetArray();
+    // }
+
   }
 
 
@@ -202,12 +207,6 @@ class SortingVisualizer extends Component {
 
     setTimeout(() => {
 
-      this.setState({
-        isActive: true,
-      });
-
-      let counter = this.state.time;
-
       for (let i = 0; i < storeArr.length; i++) {
 
         setTimeout(() => {
@@ -215,12 +214,6 @@ class SortingVisualizer extends Component {
           this.setState({
             array: storeArr[i],
           })
-
-          if (i === (storeArr.length - 1)) {
-            this.setState({
-              isActive: false,
-            });
-          }
 
         }, i * this.state.speed);
 
@@ -309,7 +302,7 @@ class SortingVisualizer extends Component {
             });
           }
 
-        }, i * this.state.speed);
+        }, i * this.state.speed * 6);
 
       };
 
@@ -443,55 +436,107 @@ class SortingVisualizer extends Component {
 // Merge Sort //////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
+  // mergeSortJoel() {
+  //
+  //   let arr = this.state.array;
+  //
+  //   if (arr.length <= 1) {
+  //     return arr;
+  //   } else {
+  //
+  //     const middleIndex = Math.floor(arr.length / 2);
+  //     const left = arr.slice(0, middleIndex);
+  //     const right = arr.slice(middleIndex);
+  //
+  //     // const sortedLeft = [2,3,4,5];
+  //     // const sortedRight = [6,7,8,9];
+  //
+  //     let sortedLeft = [];
+  //     let sortedRight = [];
+  //
+  //     setTimeout(() => {
+  //
+  //       sortedLeft = this.mergeSort(left);
+  //       sortedRight = this.mergeSort(right);
+  //
+  //       console.log(sortedLeft, sortedRight);
+  //
+  //       this.merge(sortedLeft, sortedRight);
+  //
+  //     }, 100);
+  //
+  //   }
+  //
+  // }
+  //
+  // merge(arr1, arr2) {
+  //   var result = [];
+  //
+  //   while (arr1.length && arr2.length) {
+  //     if(arr1[0] <= arr2[0]) {
+  //       result.push(arr1.shift());
+  //     } else {
+  //       result.push(arr2.shift());
+  //     }
+  //   }
+  //
+  //   let tmp = result.concat(arr1, arr2);
+  //
+  //   this.setState({
+  //     array: tmp
+  //   })
+  //   }
+
+
+  // mergeSort() {
+  //
+  //   let array = this.state.array
+  //
+  //   const half = array.length / 2
+  //
+  //   // setTimeout(() => {
+  //
+  //     // Base case
+  //     if(array.length < 2){
+  //       return array
+  //     }
+  //
+  //     const left = array.splice(0, half)
+  //
+  //     return this.merge(this.mergeSort(left),this.mergeSort(array));
+  //
+  //   // }, 1000);
+  //
+  // }
+  //
+  // merge(left, right) {
+  //   let arr = []
+  //   // Break out of loop if any one of the array gets empty
+  //   while (left.length && right.length) {
+  //       // Pick the smaller among the smallest element of left and right sub arrays
+  //       if (left[0] < right[0]) {
+  //           arr.push(left.shift())
+  //       } else {
+  //           arr.push(right.shift())
+  //       }
+  //   }
+  //
+  //   this.setState({
+  //     array: [ ...arr, ...left, ...right ]
+  //   })
+  //   // Concatenating the leftover elements
+  //   // (in case we didn't go through the entire left or right array)
+  //   return [ ...arr, ...left, ...right ]
+  // }
+
+
   mergeSort() {
 
-    let arr = this.state.array;
-
-    if (arr.length <= 1) {
-      return arr;
-    } else {
-      const middleIndex = Math.floor(arr.length / 2);
-      const left = arr.slice(0, middleIndex);
-      const right = arr.slice(middleIndex);
-
-      // const sortedLeft = [2,3,4,5];
-      // const sortedRight = [6,7,8,9];
-
-      let sortedLeft = [];
-      let sortedRight = [];
-
-      setTimeout(() => {
-
-        sortedLeft = this.mergeSort(left);
-        sortedRight = this.mergeSort(right);
-
-        console.log(sortedLeft, sortedRight);
-
-        return this.merge(sortedLeft, sortedRight);
-
-      }, 100);
-
-    }
+    this.setState({
+      array: mergeSortV(this.state.array)
+    })
 
   }
-
-  merge(arr1, arr2) {
-    var result = [];
-
-    while (arr1.length && arr2.length) {
-      if(arr1[0] <= arr2[0]) {
-        result.push(arr1.shift());
-      } else {
-        result.push(arr2.shift());
-      }
-    }
-
-    let tmp = result.concat(arr1, arr2);
-
-    this.setState({
-      array: tmp
-    })
-    }
 
 
   render() {
@@ -550,6 +595,49 @@ class SortingVisualizer extends Component {
 
 function randomIntFromInterval(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// Merge Sort //////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+export function callback(input) {
+  console.log('terds', input);
+}
+
+function mergeSortV(array) {
+
+    const half = array.length / 2
+
+    // Base case or terminating case
+    if(array.length < 2){
+      return array
+    }
+
+    const left = array.splice(0, half)
+
+    return merge(mergeSortV(left),mergeSortV(array))
+
+}
+
+function merge(left, right) {
+    let arr = []
+    // Break out of loop if any one of the array gets empty
+    while (left.length && right.length) {
+        // Pick the smaller among the smallest element of left and right sub arrays
+        if (left[0] < right[0]) {
+            arr.push(left.shift())
+        } else {
+            arr.push(right.shift())
+        }
+    }
+
+    // console.log([ ...arr, ...left, ...right ]);
+    callback([ ...arr, ...left, ...right ]);
+
+    // Concatenating the leftover elements
+    // (in case we didn't go through the entire left or right array)
+    return [ ...arr, ...left, ...right ]
 }
 
 export default SortingVisualizer;

@@ -33,7 +33,7 @@ class App extends Component {
       bestCase: 'Ω(N)',
       averageCase: '0(N^2)',
       worstCase: 'O(N^2)',
-      active: '',
+      active: 'bubble',
     };
   }
 
