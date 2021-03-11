@@ -141,6 +141,7 @@ class SortingVisualizer extends Component {
 
     let end = array.length - 1;
 
+// Main sorting loop
     while (swapped === true) {
       swapped = false;
       for (let i = 0; i < end; i++) {
@@ -156,22 +157,14 @@ class SortingVisualizer extends Component {
 
           storeArr.push(...[tmp]);
 
-          console.log(tmp);
-          // console.log(storeArr);
-
       }
       end--;
     }
 
-    console.log(storeArr);
-
+// Animation of stored arrays
     setTimeout(() => {
 
       for (let i = 0; i < storeArr.length; i++) {
-
-        console.log('test')
-
-        console.log(storeArr[i]);
 
         setTimeout(() => {
 
@@ -197,6 +190,7 @@ class SortingVisualizer extends Component {
 
     let storeArr = [];
 
+// Main sorting loop
     for (let i = 0; i < array.length; i++) {
 
       const item = array[i];
@@ -213,6 +207,7 @@ class SortingVisualizer extends Component {
 
     }
 
+// Animation of stored arrays
     setTimeout(() => {
 
       for (let i = 0; i < storeArr.length; i++) {
@@ -227,23 +222,7 @@ class SortingVisualizer extends Component {
 
       };
 
-      // while (this.state.isActive) {
-      //
-      //   console.log('testicles')
-      //
-      //     // setTimeout(() => {
-      //     //
-      //     //   this.setState({
-      //     //     isActive: counter++,
-      //     //   });
-      //     //
-      //     // }, 1000);
-      //
-      //   }
-
     }, 300);
-
-    // console.log(storeArr);
 
   }
 
@@ -253,15 +232,15 @@ class SortingVisualizer extends Component {
 
   bucketSort() {
 
-    let items = this.state.arraySteps;
+    let array = this.state.arraySteps;
     let bucketSize = 10;
 
+// Array variables for each bucket
     let arr0 = [];
     let arr1 = [];
     let arr2 = [];
 
 // Insertion sort for within the buckets.
-
   const insertionSortBucket = (input, index) => {
 
     let storeArr = [];
@@ -282,6 +261,7 @@ class SortingVisualizer extends Component {
 
     }
 
+// Animation of stored arrays
     setTimeout(() => {
 
       for (let i = 0; i < storeArr.length; i++) {
@@ -320,24 +300,25 @@ class SortingVisualizer extends Component {
 
   }
 
+// Determine min and max values
+    if(array.length === 0) { return array; }
 
-// Determin min and max values
-    if(items.length === 0) { return items; }
+    let min = Infinity;
+    let max = -Infinity;
 
-    let min = Infinity, max = -Infinity;
+    for (let i = 0; i < array.length; i++) {
 
-    for (let i = 0; i < items.length; i++) {
-
-      if (items[i] < min) {
-        min = items[i]
+      if (array[i] < min) {
+        min = array[i]
       }
 
-      if (items[i] > max) {
-        max = items[i]
+      if (array[i] > max) {
+        max = array[i]
       }
 
     }
 
+// Buckets are defined here
     const bucketCount = Math.floor((max - min) / bucketSize) + 1;
     const buckets = new Array(bucketCount);
 
@@ -345,15 +326,15 @@ class SortingVisualizer extends Component {
       buckets[i] = [];
     }
 
-    for (let i = 0; i < items.length; i++) {
-      buckets[ Math.floor((items[i] - min) / bucketSize) ].push( items[i] );
+    for (let i = 0; i < array.length; i++) {
+      buckets[ Math.floor((array[i] - min) / bucketSize) ].push( array[i] );
     }
 
-    items = [];
+    array = [];
     for (let i = 0; i < buckets.length; i++) {
 
       buckets[i] = insertionSortBucket( buckets[i], i );
-      items = items.concat( buckets[i] );
+      array = array.concat( buckets[i] );
 
     }
 
@@ -406,8 +387,6 @@ class SortingVisualizer extends Component {
       };
       arr = buckets.flat();
 
-      console.log(buckets);
-
       let tmp = [...arr];
 
       storeArr.push(...[tmp]);
@@ -443,47 +422,6 @@ class SortingVisualizer extends Component {
 ////////////////////////////////////////////////////////////////////////////////
 // Merge Sort //////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-
-  // mergeSort() {
-  //
-  //   let array = this.state.array
-  //
-  //   const half = array.length / 2
-  //
-  //   // setTimeout(() => {
-  //
-  //     // Base case
-  //     if(array.length < 2){
-  //       return array
-  //     }
-  //
-  //     const left = array.splice(0, half)
-  //
-  //     return this.merge(this.mergeSort(left),this.mergeSort(array));
-  //
-  //   // }, 1000);
-  //
-  // }
-  //
-  // merge(left, right) {
-  //   let arr = []
-  //   // Break out of loop if any one of the array gets empty
-  //   while (left.length && right.length) {
-  //       // Pick the smaller among the smallest element of left and right sub arrays
-  //       if (left[0] < right[0]) {
-  //           arr.push(left.shift())
-  //       } else {
-  //           arr.push(right.shift())
-  //       }
-  //   }
-  //
-  //   this.setState({
-  //     array: [ ...arr, ...left, ...right ]
-  //   })
-  //   // Concatenating the leftover elements
-  //   // (in case we didn't go through the entire left or right array)
-  //   return [ ...arr, ...left, ...right ]
-  // }
 
   mergeSort() {
 
@@ -558,6 +496,8 @@ function randomIntFromInterval(min, max) {
 
 function mergeSortV(array) {
 
+  // setTimeout(() => {
+
     const half = array.length / 2
 
     if(array.length < 2){
@@ -568,10 +508,13 @@ function mergeSortV(array) {
 
     return merge(mergeSortV(left),mergeSortV(array))
 
+  // }, 1000);
+
 }
 
 function merge(left, right) {
-    let arr = []
+
+    var arr = []
 
     while (left.length && right.length) {
         if (left[0] < right[0]) {
@@ -582,6 +525,7 @@ function merge(left, right) {
     }
 
     return [ ...arr, ...left, ...right ]
+
 }
 
 export default SortingVisualizer;
