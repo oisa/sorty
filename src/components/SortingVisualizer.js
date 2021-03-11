@@ -193,13 +193,13 @@ class SortingVisualizer extends Component {
 // Main sorting loop
     for (let i = 0; i < array.length; i++) {
 
-      const item = array[i];
+      const step = array[i];
 
-      for (var j = i-1; j >= 0 && array[j] > item; j--) {
+      for (var j = i-1; j >= 0 && array[j] > step; j--) {
         array[j+1] = array[j];
       }
 
-      array[j+1] = item;
+      array[j+1] = step;
 
       let tmp = [...array];
 
@@ -247,13 +247,13 @@ class SortingVisualizer extends Component {
 
     for (let i = 0; i < input.length; i++) {
 
-      const item = input[i];
+      const step = input[i];
 
-      for (var j = i-1; j >= 0 && input[j] > item; j--) {
+      for (var j = i-1; j >= 0 && input[j] > step; j--) {
         input[j+1] = input[j];
       }
 
-      input[j+1] = item;
+      input[j+1] = step;
 
       let tmp = [...input];
 
