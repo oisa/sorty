@@ -436,58 +436,6 @@ class SortingVisualizer extends Component {
 // Merge Sort //////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-  // mergeSortJoel() {
-  //
-  //   let arr = this.state.array;
-  //
-  //   if (arr.length <= 1) {
-  //     return arr;
-  //   } else {
-  //
-  //     const middleIndex = Math.floor(arr.length / 2);
-  //     const left = arr.slice(0, middleIndex);
-  //     const right = arr.slice(middleIndex);
-  //
-  //     // const sortedLeft = [2,3,4,5];
-  //     // const sortedRight = [6,7,8,9];
-  //
-  //     let sortedLeft = [];
-  //     let sortedRight = [];
-  //
-  //     setTimeout(() => {
-  //
-  //       sortedLeft = this.mergeSort(left);
-  //       sortedRight = this.mergeSort(right);
-  //
-  //       console.log(sortedLeft, sortedRight);
-  //
-  //       this.merge(sortedLeft, sortedRight);
-  //
-  //     }, 100);
-  //
-  //   }
-  //
-  // }
-  //
-  // merge(arr1, arr2) {
-  //   var result = [];
-  //
-  //   while (arr1.length && arr2.length) {
-  //     if(arr1[0] <= arr2[0]) {
-  //       result.push(arr1.shift());
-  //     } else {
-  //       result.push(arr2.shift());
-  //     }
-  //   }
-  //
-  //   let tmp = result.concat(arr1, arr2);
-  //
-  //   this.setState({
-  //     array: tmp
-  //   })
-  //   }
-
-
   // mergeSort() {
   //
   //   let array = this.state.array
@@ -528,7 +476,6 @@ class SortingVisualizer extends Component {
   //   // (in case we didn't go through the entire left or right array)
   //   return [ ...arr, ...left, ...right ]
   // }
-
 
   mergeSort() {
 
@@ -601,15 +548,10 @@ function randomIntFromInterval(min, max) {
 // Merge Sort //////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-export function callback(input) {
-  console.log('terds', input);
-}
-
 function mergeSortV(array) {
 
     const half = array.length / 2
 
-    // Base case or terminating case
     if(array.length < 2){
       return array
     }
@@ -622,9 +564,8 @@ function mergeSortV(array) {
 
 function merge(left, right) {
     let arr = []
-    // Break out of loop if any one of the array gets empty
+
     while (left.length && right.length) {
-        // Pick the smaller among the smallest element of left and right sub arrays
         if (left[0] < right[0]) {
             arr.push(left.shift())
         } else {
@@ -632,11 +573,6 @@ function merge(left, right) {
         }
     }
 
-    // console.log([ ...arr, ...left, ...right ]);
-    callback([ ...arr, ...left, ...right ]);
-
-    // Concatenating the leftover elements
-    // (in case we didn't go through the entire left or right array)
     return [ ...arr, ...left, ...right ]
 }
 

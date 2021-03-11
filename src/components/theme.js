@@ -9,7 +9,7 @@ export const dosTheme = {
   gradient_bottom: '#3A00DE'
 }
 
-export const darkTheme = {
+export const atariTheme = {
   primary: '#FFB800',
   primary_rgb: '255, 184, 0',
   secondary: '#000000',
