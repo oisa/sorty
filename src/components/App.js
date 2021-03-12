@@ -43,7 +43,6 @@ class App extends Component {
 
         <div className="nav-container">
           <HeaderLogo />
-          {/*<SortOptions />*/}
           <div className="sort-options-nav">
             <ul className="sort-list">
               <li>
@@ -102,7 +101,6 @@ class App extends Component {
             averageCase= {this.state.averageCase}
             worstCase= {this.state.worstCase}
            />
-          {/* <SortingVisualizer2D /> */}
           <SortingVisualizer sortName= {this.state.method} />
         </div>
 

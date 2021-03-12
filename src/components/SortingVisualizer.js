@@ -6,21 +6,24 @@ import { useSpring, a } from "react-spring/three";
 // Components
 import SortIcon from '../assets/SortIcon';
 
+// Enables soft shadows
 softShadows();
 
+// Shape component
 const SpinningMesh = ({ position, color, speed, args }) => {
 
   const mesh = useRef();
 
-  //useFrame allows us to re-render/update rotation on each frame
+// This allows the environment to re-render upon each frame load
   useFrame(() => (mesh.current.rotation.x = mesh.current.rotation.y += 0.01));
 
-  //Basic expand state
+// Enables cubes to expand if clicked
   const [expand, setExpand] = useState(false);
-  // React spring expand animation
   const props = useSpring({
     scale: expand ? [1.4, 1.4, 1.4] : [1, 1, 1],
   });
+
+// Main
   return (
     <a.mesh
       position={position}
@@ -93,17 +96,6 @@ class SortingVisualizer extends Component {
 
 
   determineMethod() {
-
-    // const equals = (a, b) =>
-    // a.length === b.length &&
-    // a.every((v, i) => v === b[i]);
-    //
-    // const s = this.state.array
-    // const t = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]
-    //
-    // if ( equals(s, t) ) {
-    //   this.resetArray();
-    // }
 
     if ( this.props.sortName === 'bubble' ) {
       this.bubbleSort();
@@ -456,17 +448,7 @@ class SortingVisualizer extends Component {
           shadowMap
           camera={{ position: [-40, 25, 40], fov: 60 }}>
           <ambientLight intensity={0.3} />
-          <directionalLight
-            castShadow
-            position={[0, 10, 0]}
-            intensity={1.5}
-            shadow-mapSize-width={1024}
-            shadow-mapSize-height={1024}
-            shadow-camera-far={50}
-            shadow-camera-left={-10}
-            shadow-camera-right={10}
-            shadow-camera-top={10}
-            shadow-camera-bottom={-10}
+          <directionalLight castShadow position={[0, 10, 0]} intensity={1.5} shadow-mapSize-width={1024} shadow-mapSize-height={1024} shadow-camera-far={50} shadow-camera-left={-10} shadow-camera-right={10} shadow-camera-top={10} shadow-camera-bottom={-10}
           />
           <pointLight position={[-10, 0, -20]} intensity={0.5} />
           <pointLight position={[0, -10, 0]} intensity={1.5} />
@@ -486,6 +468,9 @@ class SortingVisualizer extends Component {
   }
 }
 
+// Other functions running outside the class component
+
+// Random number function
 function randomIntFromInterval(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }

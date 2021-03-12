@@ -11,21 +11,21 @@ class SortInfo extends Component {
   }
 
   // Commented out showing RAM Usage
-  componentDidMount() {
-
-    this.ramUsage();
-
-  }
-
-  ramUsage() {
-
-    this.setState({
-      ram: performance.memory.usedJSHeapSize
-    })
-
-    setTimeout(() => {this.ramUsage()}, 1000);
-
-  }
+  // componentDidMount() {
+  //
+  //   this.ramUsage();
+  //
+  // }
+  //
+  // ramUsage() {
+  //
+  //   this.setState({
+  //     ram: performance.memory.usedJSHeapSize
+  //   })
+  //
+  //   setTimeout(() => {this.ramUsage()}, 1000);
+  //
+  // }
 
   render() {
 
@@ -45,9 +45,9 @@ class SortInfo extends Component {
 
           <li>Worst Case: { this.props.worstCase }</li>
 
-          <RenderInBrowser chrome only>
+          {/*<RenderInBrowser chrome only>
             <li>RAM Usage: { this.state.ram } bytes</li>
-          </RenderInBrowser>
+          </RenderInBrowser>*/}
 
           {/*<li>Time taken: this.props.timer</li>*/}
         </ul>
