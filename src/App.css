@@ -28,7 +28,7 @@
   --font-l: 24px;
   --font-m: 16px;
   --font-std: 12px;
-  --font-s: 8px;
+  --font-s: 11px;
 
 }
 
@@ -114,7 +114,6 @@ a {
 }
 
 .sort-list > li > a:hover {
-  /* background-color: var(--primary); */
   color: var(--secondary);
   background-color: var(--primary);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%233f40c7' fill-opacity='0.2' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
@@ -199,6 +198,21 @@ canvas {
   position: absolute;
   bottom: 20px;
   z-index: 100;
+}
+
+.toast {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 20px 25px 25px 25px;
+  z-index: 100;
+}
+
+.toast > p {
+  margin: 0;
+  font-size: var(--font-s);
+  padding: 20px;
+  font-style: italic;
 }
 
 
