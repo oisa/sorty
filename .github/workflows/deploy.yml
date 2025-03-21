@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       NODE_OPTIONS: --openssl-legacy-provider
+      CI: false
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
