@@ -3,11 +3,13 @@ name: Deploy React App to GitHub Pages
 on:
   push:
     branches:
-      - main  # Change this if you're using a different branch
+      - main
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    env:
+      NODE_OPTIONS: --openssl-legacy-provider
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
