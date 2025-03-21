@@ -4,7 +4,7 @@ Welcome to Sorty, your friendly neighbourhood sorting method visualiser :)
 
 This was a personal goal of mine, to learn more about the way the different sorting methods function and then from there, how to show how they do their thing. It's not a new idea of course, though I felt it was an exercise I wanted to explore.
 
-Visit Sorty at [sorty.dev](https://sorty.dev)!
+Visit Sorty at [https://oisa.github.io/sorty/](https://oisa.github.io/sorty/)!
 
 
 ![Screenshot Main Shot](public/sorty-screenshot-1.png)
